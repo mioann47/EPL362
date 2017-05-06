@@ -1,4 +1,4 @@
-package com.dendro.recommender.server;
+package epl362rest;
 import java.util.ArrayList;
 
 import javax.xml.bind.annotation.XmlRootElement;
@@ -9,16 +9,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 //Isn't that cool?
 public class PatientListWrapper {
 
-		private ArrayList<Patient> pList;
+	private ArrayList<Patient> pList;
 
-		public ArrayList<Patient> getpList() {
-			return pList;
-		}
-
-		public void setpList(ArrayList<Patient> pList) {
-			this.pList = pList;
-		}
-
-
-
+	public ArrayList<Patient> getpList() {
+		return pList;
 	}
+
+	public void setpList(ArrayList<Patient> pList) {
+		this.pList = pList;
+	}
+	
+	
+	
+}
