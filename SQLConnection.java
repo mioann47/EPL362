@@ -1,4 +1,4 @@
-package mysql.pckg;
+package epl362rest;
 import java.sql.*;
 
 
@@ -6,7 +6,7 @@ public class SQLConnection {
 	private static boolean dbDriverLoaded = false;
 	private static Connection conn = null;
 	public  Connection getDBConnection() {
-	
+	//	String dbConnString = "jdbc:sqlserver://APOLLO.IN.CS.UCY.AC.CY:1433;databaseName=lsolea01;user=lsolea01;password=5tuBrapuvuPR;";
 		String dbConnString = "jdbc:sqlserver://localhost;user=modestos;password=omonoia";
 		if (!dbDriverLoaded)
 			try {
