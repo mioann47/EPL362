@@ -1,3 +1,5 @@
+package com.dendro.recommender.client;
+
 import java.io.StringReader;
 import java.net.URI;
 import java.util.ArrayList;
@@ -12,6 +14,10 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
+import com.dendro.recommender.server.treatment;
+import com.dendro.recommender.server.treatmentlistwrapper;
+import com.dendro.recommender.server.users;
+import com.dendro.recommender.server.userslistwrapper;
 import org.glassfish.jersey.client.ClientConfig;
 
 public class GetArrayLists {
@@ -140,8 +146,81 @@ public class GetArrayLists {
 		return p.getcList();
 
 	}
-	
-	
+
+
+
+	public static ArrayList<users> getUsersList() {
+
+		ClientConfig config = new ClientConfig();
+
+		Client client = ClientBuilder.newClient(config);
+
+		WebTarget target = client.target(getBaseURI());
+
+		userslistwrapper p = null;
+
+		String plainAnswer = target.path("rest").path("get").path("users").request()
+				.accept(MediaType.APPLICATION_XML).get(String.class);
+
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(userslistwrapper.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+			StringReader reader = new StringReader(plainAnswer);
+			p = (userslistwrapper) unmarshaller.unmarshal(reader);
+
+		} catch (JAXBException e) {
+
+			e.printStackTrace();
+		}
+
+		return p.getpList();
+
+	}
+
+
+	public static ArrayList<treatment> getTreatmentList() {
+
+		ClientConfig config = new ClientConfig();
+
+		Client client = ClientBuilder.newClient(config);
+
+		WebTarget target = client.target(getBaseURI());
+
+		treatmentlistwrapper p = null;
+
+		String plainAnswer = target.path("rest").path("get").path("treatment").request()
+				.accept(MediaType.APPLICATION_XML).get(String.class);
+
+		JAXBContext jaxbContext;
+		try {
+			jaxbContext = JAXBContext.newInstance(userslistwrapper.class);
+			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+
+			StringReader reader = new StringReader(plainAnswer);
+			p = (treatmentlistwrapper) unmarshaller.unmarshal(reader);
+
+		} catch (JAXBException e) {
+
+			e.printStackTrace();
+		}
+
+		return p.getpList();
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
 	
 	public static void main(String[] args) {
 
