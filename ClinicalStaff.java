@@ -18,6 +18,11 @@ import javax.swing.JScrollBar;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JScrollPane;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 
 public class ClinicalStaff extends JFrame {
 
@@ -29,6 +34,10 @@ public class ClinicalStaff extends JFrame {
 	private JTextField details;
 	private JTextField pantie_id;
 	private JTextField detailstre;
+	private JTable table;
+	private JTable table_1;
+	private JTable table_2;
+	private JTable table_3;
 
 	/**
 	 * Launch the application.
@@ -53,82 +62,65 @@ public class ClinicalStaff extends JFrame {
 	 */
 	public ClinicalStaff() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 781, 440);
+		setBounds(100, 100, 843, 480);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(0, 11, 765, 390);
-		contentPane.add(tabbedPane);
 		
-		JPanel PATIENTS = new JPanel();
+		JScrollPane PATIENTS = new JScrollPane();
 		tabbedPane.addTab("PATIENTS", null, PATIENTS, null);
-		PATIENTS.setLayout(null);
 		
 		JLabel NAME = new JLabel("NAME:");
-		NAME.setBounds(10, 11, 45, 32);
-		PATIENTS.add(NAME);
+		NAME.setBounds(10, 11, 80, 32);
 		
 		JLabel ADDRESS = new JLabel("ADDRESS:");
+		ADDRESS.setBounds(10, 54, 97, 32);
 		ADDRESS.setHorizontalAlignment(SwingConstants.LEFT);
-		ADDRESS.setBounds(10, 54, 70, 32);
-		PATIENTS.add(ADDRESS);
 		
 		JLabel SELFHARM = new JLabel("SELFHARM:");
-		SELFHARM.setHorizontalAlignment(SwingConstants.LEFT);
 		SELFHARM.setBounds(10, 121, 97, 14);
-		PATIENTS.add(SELFHARM);
+		SELFHARM.setHorizontalAlignment(SwingConstants.LEFT);
 		
 		JLabel PROBLEM = new JLabel("PROBLEM:");
 		PROBLEM.setBounds(10, 146, 93, 32);
-		PATIENTS.add(PROBLEM);
 		
 		JLabel PREVIOUS_CONSULTATION = new JLabel("PREVIOUS_CONSULTATION(D/M/Y):");
-		PREVIOUS_CONSULTATION.setBounds(10, 189, 202, 32);
-		PATIENTS.add(PREVIOUS_CONSULTATION);
+		PREVIOUS_CONSULTATION.setBounds(10, 189, 225, 32);
 		
 		JLabel islalive = new JLabel("ISALIVE:");
 		islalive.setBounds(10, 232, 142, 24);
-		PATIENTS.add(islalive);
 		
 		name = new JTextField();
-		name.setBounds(79, 17, 133, 20);
-		PATIENTS.add(name);
+		name.setBounds(182, 17, 133, 20);
 		name.setColumns(10);
 		
 		address = new JTextField();
-		address.setBounds(79, 60, 133, 24);
-		PATIENTS.add(address);
+		address.setBounds(192, 58, 133, 24);
 		address.setColumns(10);
 		
 		JCheckBox selfharm = new JCheckBox("YES");
 		selfharm.setBounds(169, 117, 97, 23);
-		PATIENTS.add(selfharm);
 		
 		JComboBox d_pa = new JComboBox();
 		d_pa.setBounds(243, 195, 51, 20);
-		PATIENTS.add(d_pa);
 		
 		JComboBox m_pa = new JComboBox();
 		m_pa.setBounds(320, 195, 51, 20);
-		PATIENTS.add(m_pa);
 		
 		JComboBox y_pa = new JComboBox();
 		y_pa.setBounds(381, 195, 70, 20);
-		PATIENTS.add(y_pa);
 		
 		JCheckBox isalive = new JCheckBox("YES");
 		isalive.setBounds(98, 233, 97, 23);
-		PATIENTS.add(isalive);
 		
 		problem = new JTextField();
-		problem.setBounds(79, 146, 156, 24);
-		PATIENTS.add(problem);
+		problem.setBounds(110, 150, 156, 24);
 		problem.setColumns(10);
 		
 		JButton insert = new JButton("Insert");
+		insert.setBounds(146, 306, 89, 23);
 		insert.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -149,8 +141,28 @@ public class ClinicalStaff extends JFrame {
 				}
 			}
 		});
-		insert.setBounds(146, 306, 89, 23);
+		PATIENTS.setLayout(null);
+		PATIENTS.add(NAME);
+		PATIENTS.add(name);
+		PATIENTS.add(ADDRESS);
+		PATIENTS.add(address);
+		PATIENTS.add(SELFHARM);
+		PATIENTS.add(selfharm);
+		PATIENTS.add(PROBLEM);
+		PATIENTS.add(problem);
+		PATIENTS.add(PREVIOUS_CONSULTATION);
+		PATIENTS.add(d_pa);
+		PATIENTS.add(m_pa);
+		PATIENTS.add(y_pa);
+		PATIENTS.add(islalive);
+		PATIENTS.add(isalive);
 		PATIENTS.add(insert);
+		
+		table_1 = new JTable();
+		PATIENTS.setColumnHeaderView(table_1);
+		
+		table_2 = new JTable();
+		PATIENTS.setViewportView(table_2);
 		
 		JPanel IDENTITY = new JPanel();
 		tabbedPane.addTab("INCIDENTS", null, IDENTITY, null);
@@ -187,7 +199,7 @@ public class ClinicalStaff extends JFrame {
 		IDENTITY.add(bd_month5);
 		
 		JComboBox bd_year5 = new JComboBox();
-		bd_year5.setBounds(268, 117, 56, 20);
+		bd_year5.setBounds(318, 117, 56, 20);
 		IDENTITY.add(bd_year5);
 		
 		JButton btnNewButton = new JButton("Insert");
@@ -280,6 +292,36 @@ public class ClinicalStaff extends JFrame {
 		JScrollBar scrollBar = new JScrollBar();
 		scrollBar.setBounds(733, 11, 17, 340);
 		panel.add(scrollBar);
+		
+		JPanel panel_1 = new JPanel();
+		tabbedPane.addTab("New tab", null, panel_1, null);
+		panel_1.setLayout(null);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		table.setBounds(39, 16, 580, 251);
+		panel_1.add(table);
+		
+		table_3 = new JTable();
+		tabbedPane.addTab("New tab", null, table_3, null);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 765, GroupLayout.PREFERRED_SIZE)
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addGap(6)
+					.addComponent(tabbedPane, GroupLayout.PREFERRED_SIZE, 390, GroupLayout.PREFERRED_SIZE))
+		);
+		contentPane.setLayout(gl_contentPane);
 		
 		
 		
