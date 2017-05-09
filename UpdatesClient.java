@@ -1,4 +1,4 @@
-package mysql.pckg;
+
 
 
 
@@ -45,7 +45,8 @@ public class UpdatesClient {
 
         }
 
-        public static void updatePatient (int id,String name,String address,String selfharm,String problem){
+        public static void updatePatient (int id,String name,String address,String selfharm,String problem,String prev,String isalive
+        		,String com,String dang){
             ClientConfig config = new ClientConfig();
 
             Client client = ClientBuilder.newClient(config);
@@ -57,7 +58,7 @@ public class UpdatesClient {
                     path("updatepatient").queryParam("id", id).
                     queryParam("name", name).
                     queryParam("address", address).queryParam("selfharm", selfharm).
-                    queryParam("problem",problem).
+                    queryParam("problem",problem).queryParam("prev",prev).queryParam("isalive",isalive).queryParam("com",com).queryParam("dang",dang).
                             request().
                             accept(MediaType.TEXT_PLAIN).
                             get(Response.class)
@@ -227,16 +228,16 @@ public class UpdatesClient {
         
  public static void main(String[] args) {
         	
-        	updateClinic(1,"kliniki","diethinsi","0","0");
-        	updatePatient (1,"onoma","dddd","0","lalallaallaa");
-        	updateUser (1,"a","123450000","a a","a");
+        	//updateClinic(1,"kliniki","diethinsi","0","0");
+        	updatePatient (2,"onoma","kok","0","koko", "1955-5-5", "1", "koko", "1");
+        	/*updateUser (1,"a","123450000","a a","a");
         	updateallergy (1,"TASIS AFTOKTONIAS");
         	updateappointment (2,2,2,"1993-12-13","your doctor");
         	updatedrug (1,"narkotika","THANATOS!");
         	updateincidents (1,1,"DADWADA","1993-12-13");
         	updateoverruled (1,2,2);
         	updatepatientallergy (1,1,1);
-        	updatetreatment (1,1,"DETAILSSSS","1993-12-13");
+        	updatetreatment (1,1,"DETAILSSSS","1993-12-13");*/
         }
 
 }
