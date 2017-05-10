@@ -61,6 +61,7 @@ public class ClinicalStaff extends JFrame {
 	private JTable tableallergys;
 	DefaultTableModel modelal;
 	ArrayList<PatientAllergy> palist;
+	private JTable table_3;
 
 	/**
 	 * Launch the application.
@@ -197,7 +198,38 @@ public class ClinicalStaff extends JFrame {
 		table_2.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
-
+				if (table_2.getValueAt(table_2.getSelectedRow(), 6).toString().equals("false")){
+					
+					btnUpdate.setEnabled(false);
+					textFieldName.setEnabled(false);
+					textFieldAddress.setEnabled(false);
+					textFieldComments.setEnabled(false);
+					textFieldProblem.setEnabled(false);
+					bLater.setEnabled(false);
+					k_se.setEnabled(false);
+					k_alive.setEnabled(false);
+					k_d.setEnabled(false);
+					btnDelete.setEnabled(false);
+			return;
+				}
+				btnUpdate.setEnabled(true);
+				textFieldName.setEnabled(true);
+				textFieldAddress.setEnabled(true);
+				textFieldComments.setEnabled(true);
+				textFieldProblem.setEnabled(true);
+				bLater.setEnabled(true);
+				k_se.setEnabled(true);
+				k_alive.setEnabled(true);
+				k_d.setEnabled(true);
+				btnDelete.setEnabled(true);
+				
+				
+				
+				
+				
+				
+				
+				
 				if (table_2.getSelectedRow() < 0) {
 					btnUpdate.setEnabled(false);
 					btnDelete.setEnabled(false);
@@ -368,12 +400,7 @@ public class ClinicalStaff extends JFrame {
 			@Override
 			public void valueChanged(ListSelectionEvent event) {
 
-				// System.out.println(table_1.getValueAt(table_1.getSelectedRow(),
-				// 0).toString());
-				// System.out.println(table_1.getValueAt(table_1.getSelectedRow(),
-				// 1).toString());
-				// System.out.println(table_1.getValueAt(table_1.getSelectedRow(),
-				// 2).toString());
+				
 				pantient_id.setText(table_1.getValueAt(table_1.getSelectedRow(), 0).toString());
 				details.setText(table_1.getValueAt(table_1.getSelectedRow(), 1).toString());
 
@@ -481,9 +508,17 @@ public class ClinicalStaff extends JFrame {
 			}
 		});
 		scrollPane_1.setViewportView(table);
+		
+		JComboBox ctredrug = new JComboBox();
+		ctredrug.setBounds(549, 396, 197, 27);
+		TREATMENT.add(ctredrug);
+		
+		JLabel lblDrugs = new JLabel("DRUGS:");
+		lblDrugs.setBounds(595, 363, 80, 16);
+		TREATMENT.add(lblDrugs);
 
 		JPanel DRUGS = new JPanel();
-		tabbedPane.addTab("DRUGS", null, DRUGS, null);
+		tabbedPane.addTab("VIEW DRUGS", null, DRUGS, null);
 		DRUGS.setLayout(null);
 
 		JScrollPane scrollPane_3 = new JScrollPane();
@@ -505,7 +540,7 @@ public class ClinicalStaff extends JFrame {
 		scrollPane_3.setViewportView(tableDRUGS);
 
 		JPanel ALLERGYS = new JPanel();
-		tabbedPane.addTab("PATIENT ALLERGYS", null, ALLERGYS, null);
+		tabbedPane.addTab("VIEW PATIENT ALLERGYS", null, ALLERGYS, null);
 		ALLERGYS.setLayout(null);
 
 		JScrollPane scrollPane_4 = new JScrollPane();
@@ -523,6 +558,51 @@ public class ClinicalStaff extends JFrame {
 		scrollPane_4.setViewportView(tableallergys);
 
 		contentPane.add(tabbedPane);
+		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("INSERT ALLERGYS", null, panel, null);
+		panel.setLayout(null);
+		
+		JScrollPane scrollPane_5 = new JScrollPane();
+		scrollPane_5.setBounds(64, 29, 865, 274);
+		panel.add(scrollPane_5);
+		
+		table_3 = new JTable();
+		table_3.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"PATIENT ID", "ALELRGY ID"
+			}
+		) {
+			boolean[] columnEditables = new boolean[] {
+				false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
+		});
+		scrollPane_5.setViewportView(table_3);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(74, 370, 151, 22);
+		panel.add(comboBox);
+		
+		JLabel lblPatientId = new JLabel("PATIENT ID - NAME:");
+		lblPatientId.setBounds(82, 341, 143, 16);
+		panel.add(lblPatientId);
+		
+		JLabel lblAllergyIdName = new JLabel("ALLERGY ID_ NAME:");
+		lblAllergyIdName.setBounds(285, 341, 127, 16);
+		panel.add(lblAllergyIdName);
+		
+		JComboBox comboBox_1 = new JComboBox();
+		comboBox_1.setBounds(269, 370, 172, 22);
+		panel.add(comboBox_1);
+		
+		JButton btnInsert = new JButton("INSERT");
+		btnInsert.setBounds(597, 369, 97, 25);
+		panel.add(btnInsert);
 
 		patientlist = GetArrayLists.getPatientsList();
 		if (patientlist != null) {
