@@ -20,6 +20,89 @@ public class GetAll {
 
 	
 	@GET
+	@Path("/updatelaterpatients")
+	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_XML  })
+		public PatientListWrapper getPatientsNotUpdated(){
+		if (conn == null) {
+			return null;
+		}
+		ArrayList<Patient> ap = new ArrayList<Patient>();
+		ResultSet rs = null;
+		String query = "SELECT * FROM PATIENTS";
+		try {
+			
+			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY,
+					ResultSet.CLOSE_CURSORS_AT_COMMIT);		
+		
+			rs = stmt.executeQuery(query);
+			
+			
+			
+			while (rs.next()) {
+				
+				int col1 = rs.getInt("ID");
+				String col2 = rs.getString("NAME");
+				String col3 = rs.getString("ADDRESS");
+				
+				String col4 = rs.getString("SELFHARM");
+				
+				String col5 = rs.getString("PROBLEM");
+				String col6 = rs.getString("PREVIOUS_CONSULTATION");
+				
+				String col7 = rs.getString("ISALIVE");
+				
+				
+				String col8 = rs.getString("COMMENTS");
+				
+				
+				String col9 = rs.getString("DANGEROUS");
+				
+				Patient p=new Patient();
+				p.setId(col1);
+				p.setName(col2);
+				p.setAddress(col3);
+				p.setSelfharm(col4.charAt(0));
+				p.setProblem(col5);
+				p.setPrev_cons(col6);
+				p.setIsalive(col7.charAt(0));
+				p.setComments(col8);
+				p.setDangerous(col9.charAt(0));
+				
+				
+				ap.add(p);
+				
+
+
+				
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+	
+	try {
+			if (!conn.isClosed()) {
+				conn.close();
+			}
+		} catch (Exception e) {
+			// Ignore the error and continues
+		}
+
+	
+	
+
+	PatientListWrapper plw= new PatientListWrapper();
+	
+	plw.setpList(ap);
+	
+	return plw;
+	}
+	
+	
+	
+	@GET
 	@Path("/patients")
 	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON, MediaType.TEXT_XML  })
 		public PatientListWrapper getPatients(){
