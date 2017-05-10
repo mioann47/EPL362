@@ -28,7 +28,7 @@ public class GetAll {
 		}
 		ArrayList<Patient> ap = new ArrayList<Patient>();
 		ResultSet rs = null;
-		String query = "SELECT * FROM PATIENTS";
+		String query = "SELECT * FROM PATIENTS_UPDATE_LATER";
 		try {
 			
 			Statement stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY,
