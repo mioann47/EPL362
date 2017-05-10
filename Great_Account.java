@@ -22,17 +22,17 @@ import java.awt.event.ActionListener;
 import java.net.URI;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JComboBox;
 
 public class Great_Account extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField username;
 	private JTextField name;
-	private JTextField role;
 	private JButton great;
 	private JPasswordField password;
 	private JFrame frame;
-
+	JComboBox rolebox = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +52,7 @@ public class Great_Account extends JFrame {
 	
 	
 	private static URI getBaseURI() {
-        return UriBuilder.fromUri("http://192.168.0.2:8090/rest").build();
+        return UriBuilder.fromUri("http://192.168.0.11:8080/rest").build();
 }
 	/**
 	 * Create the frame.
@@ -92,37 +92,20 @@ public class Great_Account extends JFrame {
 		lblNewLabel_2.setBounds(10, 172, 87, 20);
 		contentPane.add(lblNewLabel_2);
 
-		role = new JTextField();
-		role.setBounds(87, 172, 184, 20);
-		contentPane.add(role);
-		role.setColumns(10);
-
-		great = new JButton("Great");
+		great = new JButton("Create");
 		great.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String user = username.getText();
 				char[] pass = password.getPassword();
 				String pa = new String(pass);
 				String name1 = name.getText();
-				String role1 = role.getText();
+				String role1 = (String) rolebox.getSelectedItem();
 				if (user.length() > 0 && pa.length() > 0 && name1.length() > 0 && role1.length() > 0) {
 					
 					frame.setVisible(false);
 					Login.window.frame.setVisible(true);
-					 ClientConfig config = new ClientConfig();
-
-		                Client client = ClientBuilder.newClient(config);
-
-		                WebTarget target = client.target(getBaseURI());
-
-		                String response = target.path("users").
-		                                                        path("signup").queryParam("username", user).queryParam("password", pa).queryParam("name", name1).queryParam("role", role1)
-		                                                        .
-		                                                        request().
-		                                                        accept(MediaType.TEXT_PLAIN).
-		                                                        get(Response.class)
-		                                                        .toString();
-
+					
+					insertclient.signup(user, pa, name1, role1);
 					
 					
 										
@@ -130,7 +113,7 @@ public class Great_Account extends JFrame {
 
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "dokimaste 3ana");
+					JOptionPane.showMessageDialog(null, "Try Again");
 				}
 			}
 		});
@@ -140,6 +123,15 @@ public class Great_Account extends JFrame {
 		password = new JPasswordField();
 		password.setBounds(87, 67, 184, 20);
 		contentPane.add(password);
-
+		
+		
+		rolebox.setBounds(87, 172, 183, 20);
+		contentPane.add(rolebox);
+		
+		rolebox.addItem("Doctor");
+		rolebox.addItem("Nurse");
+		rolebox.addItem("Health Visitor");
+		rolebox.addItem("Receptionist");
+		rolebox.addItem("Medical Record Staff");
 	}
 }
