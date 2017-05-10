@@ -79,7 +79,7 @@ public class Login  {
 					frame.setVisible(false);
 					ClinicalStaff clinical = new ClinicalStaff();
 					clinical.setVisible(true);
-					clinical.setTitle("Receptionists");
+					clinical.setTitle("Clinical Staff");
 
 				}
 				// frame Receptionists
@@ -87,7 +87,7 @@ public class Login  {
 					frame.dispose();
 					Receptionists receptionis = new Receptionists();
 					receptionis.setVisible(true);
-					receptionis.setTitle("Clinical");
+					receptionis.setTitle("Receptionists");
 
 				}
 
@@ -101,7 +101,7 @@ public class Login  {
 				}
 
 				else {
-					JOptionPane.showMessageDialog(null, "dokimaste 3ana");
+					JOptionPane.showMessageDialog(null, "Try again");
 				}
 			}
 		});
@@ -117,13 +117,13 @@ public class Login  {
 		password.setBounds(110, 109, 146, 26);
 		frame.getContentPane().add(password);
 
-		JButton grea_acco = new JButton("Great Account");
+		JButton grea_acco = new JButton("Create Account");
 		grea_acco.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				Great_Account frame = new Great_Account();
 				frame.setVisible(true);
 				window.frame.setVisible(false);
-				frame.setTitle("Great_Account");
+				frame.setTitle("Create Account");
 
 			}
 		});
