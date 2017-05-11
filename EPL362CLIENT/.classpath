@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_131"/>
+	<classpathentry kind="lib" path="aopalliance-repackaged-2.5.0-b32.jar"/>
+	<classpathentry kind="lib" path="hk2-api-2.5.0-b32.jar"/>
+	<classpathentry kind="lib" path="hk2-locator-2.5.0-b32.jar"/>
+	<classpathentry kind="lib" path="hk2-utils-2.5.0-b32.jar"/>
+	<classpathentry kind="lib" path="javassist-3.20.0-GA.jar"/>
+	<classpathentry kind="lib" path="javax.annotation-api-1.2.jar"/>
+	<classpathentry kind="lib" path="javax.inject-2.5.0-b32.jar"/>
+	<classpathentry kind="lib" path="javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="javax.ws.rs-api-2.0.1.jar"/>
+	<classpathentry kind="lib" path="jaxb-api-2.2.7.jar"/>
+	<classpathentry kind="lib" path="jersey-client.jar"/>
+	<classpathentry kind="lib" path="jersey-common.jar"/>
+	<classpathentry kind="lib" path="jersey-container-servlet-core.jar"/>
+	<classpathentry kind="lib" path="jersey-container-servlet.jar"/>
+	<classpathentry kind="lib" path="jersey-guava-2.25.1.jar"/>
+	<classpathentry kind="lib" path="jersey-media-jaxb.jar"/>
+	<classpathentry kind="lib" path="jersey-server.jar"/>
+	<classpathentry kind="lib" path="org.osgi.core-4.2.0.jar"/>
+	<classpathentry kind="lib" path="osgi-resource-locator-1.0.1.jar"/>
+	<classpathentry kind="lib" path="persistence-api-1.0.jar"/>
+	<classpathentry kind="lib" path="validation-api-1.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="sqljdbc4.jar"/>
+	<classpathentry kind="lib" path="tools.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
